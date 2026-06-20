@@ -1,36 +1,404 @@
-id,entite_A,type_A,relation,entite_B,type_B,juridiction,source,certitude
-1,Ramzan Kadyrov,Personne,cousin de,Shahruddi Edilgiriev,Personne,Russie/Tchétchénie,IStories/OCCRP 2025,Avéré
-2,Shahruddi Edilgiriev,Personne,propriétaire enregistré de,Villa Palm Jumeirah (Zabeel Saray),Bien immobilier,UAE,IStories/Dubai Unlocked 2025,Avéré
-3,Ramzan Kadyrov,Personne,utilisateur de (ambassade officieuse depuis 2014),Villa Palm Jumeirah (Zabeel Saray),Bien immobilier,UAE,Ukrainska Pravda 2022,Probable
-4,Shahruddi Edilgiriev,Personne,propriétaire enregistré de,3 villas continentales Dubai (~6 M$),Bien immobilier,UAE,IStories/Dubai Unlocked 2025,Avéré
-5,Shahruddi Edilgiriev,Personne,propriétaire enregistré de,Airbus A319 (jet privé),Bien mobilier,UAE/intl,OCCRP/IStories,Avéré
-6,Ramzan Kadyrov,Personne,utilisateur présumé de,Airbus A319 (jet privé),Bien mobilier,UAE/intl,Ukrainska Pravda 2022,Allégué
-7,Shahruddi Edilgiriev,Personne,frère de,Pakhruddi Edilgiriev,Personne,Russie/Tchétchénie,IStories 2025,Avéré
-8,Shahruddi Edilgiriev,Personne,frère de,Amrudi Edilgiriev,Personne,Russie/Tchétchénie,IStories 2025,Avéré
-9,Pakhruddi Edilgiriev,Personne,membre de la sécurité de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,Der Spiegel / IStories,Probable
-10,Amrudi Edilgiriev,Personne,conseiller de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,IStories 2025,Avéré
-11,Zura Edilgirieva,Personne,mère de,Shahruddi Edilgiriev,Personne,Russie/Tchétchénie,IStories 2025,Avéré
-12,Zura Edilgirieva,Personne,soeur de,Akhmat Kadyrov,Personne,Russie/Tchétchénie,IStories 2025,Avéré
-13,Akhmat Kadyrov,Personne,père de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,Domaine public,Avéré
-14,Turko Daudov,Personne,cousin de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,IStories / RUSI,Avéré
-15,Turko Daudov,Personne,a séjourné à (représentant zones arabo-musulmanes),Villa Palm Jumeirah (Zabeel Saray),Bien immobilier,UAE,IStories / RUSI,Probable
-16,Turko Daudov,Personne,lobbying anti-sanctions auprès de,Pays du Golfe,Entité étatique,Moyen-Orient,RUSI,Allégué
-17,Medni Kadyrova,Personne,épouse de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,Domaine public,Avéré
-18,Medni Kadyrova,Personne,cofondatrice de,Firdaws (marque de mode),Société,UAE/Tchétchénie,Novaya Gazeta / OC Media,Avéré
-19,Aishat Kadyrova,Personne,fille de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,Domaine public,Avéré
-20,Aishat Kadyrova,Personne,associée à,Firdaws (marque de mode),Société,UAE/Tchétchénie,Novaya Gazeta / OC Media,Avéré
-21,Firdaws (marque de mode),Société,défilés réguliers depuis 2012 à,Dubai,Juridiction,UAE,Novaya Gazeta,Avéré
-22,Ruslan Baisarov,Personne,liens présumés avec,Ramzan Kadyrov,Personne,Russie,IStories / OC Media,Allégué
-23,Ruslan Baisarov,Personne,propriétaire présumé de,Biens immobiliers UAE,Bien immobilier,UAE,IStories / OC Media,Allégué
-24,Khas-Magomed Taimaskhanov,Personne,neveu de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,IStories / OC Media,Probable
-25,Khas-Magomed Taimaskhanov,Personne,propriétaire présumé de,Biens immobiliers UAE,Bien immobilier,UAE,IStories / OC Media,Allégué
-26,Ramzan Kadyrov,Personne,rencontre bilatérale 2023 avec,Président des UAE (MBZ),Personne/État,UAE,OC Media 2025,Avéré
-27,Ramzan Kadyrov,Personne,discussions présumées sur ses avoirs avec,Monarchies du Golfe,Entité étatique,Moyen-Orient,IStories 2025,Allégué
-28,Investissements UAE,Flux financier,auraient financé,Akhmat Tower (Grozny),Bien immobilier,Russie,RUSI/LSE,Allégué
-29,Address Hotels + Resorts,Société,gestionnaire de,Akhmat Tower (Grozny),Bien immobilier,Russie/UAE,RUSI/LSE,Probable
-30,Noah Krieger (Murad Dadaev),Personne,frère de,Souleiman Dadaev,Personne,Allemagne/Russie,IStories/CORRECTIV 2025,Avéré
-31,Souleiman Dadaev,Personne,"condamné pour l'assassinat (2009, Vienne) d'",Umar Israilov,Personne,Autriche,Justice autrichienne/IStories,Avéré
-32,Ramzan Kadyrov,Personne,identifié comme commanditaire présumé de l'assassinat de,Umar Israilov,Personne,Autriche/Russie,Parquet de Vienne/IStories,Probable
-33,Noah Krieger (Murad Dadaev),Personne,"contacts publics avec (commentaires, entourage)",Khamzat Kadyrov (conseiller),Personne,Allemagne/Russie,IStories/CORRECTIV 2025,Avéré
-34,Noah Krieger (Murad Dadaev),Personne,membre du parti (Basse-Saxe) jusqu'à exclusion engagée,AfD (Allemagne),Société,Allemagne,OC Media 2026,Avéré
-35,Noah Krieger (Murad Dadaev),Personne,"villa utilisée comme lieu de réunion, expulsé pour loyers impayés (oct. 2025)",Villa de Hanovre (Allemagne),Bien immobilier,Allemagne,IStories/CORRECTIV 2025,Avéré
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Réseau Kadyrov — Cartographie OSINT</title>
+<link rel="stylesheet" href="leaflet.css">
+<script src="leaflet.js"></script>
+<script src="vis-network.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#161a21; --panel2:#12151b; --border:#2a2f3a;
+    --text:#e8e8e8; --muted:#9aa3b2; --accent:#e0a458; --red:#e74c3c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+  header{padding:16px 24px;background:var(--panel);border-bottom:1px solid var(--border)}
+  h1{margin:0;font-size:19px;font-weight:600}
+  .sub{color:var(--muted);font-size:13px;margin-top:4px}
+
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;padding:12px 24px;background:var(--panel2);border-bottom:1px solid var(--border);align-items:center}
+
+  .modeToggle{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .modeToggle button{background:none;border:none;color:var(--muted);padding:8px 16px;font-size:13px;cursor:pointer;font-weight:500;display:flex;align-items:center;gap:6px}
+  .modeToggle button.active{background:var(--accent);color:#1a1205}
+  .modeToggle button:not(.active):hover{background:#1d212a;color:var(--text)}
+
+  .search{position:relative;flex:0 0 auto}
+  .search input{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:8px 12px 8px 32px;border-radius:8px;font-size:13px;width:200px}
+  .search input:focus{outline:1px solid var(--accent)}
+  .search::before{content:"🔍";position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.6}
+
+  .group{display:flex;gap:4px;align-items:center;padding:4px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+  .group span.label{font-size:11px;color:var(--muted);margin-right:6px;text-transform:uppercase;letter-spacing:.04em}
+  .group label{font-size:12.5px;color:#c5cbd6;display:flex;align-items:center;gap:5px;cursor:pointer;padding:2px 6px;border-radius:5px}
+  .group label:hover{background:#1d212a}
+
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-left:auto;align-items:center}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .chip{width:20px;height:0;border-top:2px solid #999}
+  .chip.solid{border-top-style:solid}
+  .chip.dashed{border-top-style:dashed}
+  .chip.dotted{border-top-style:dotted}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  .layout{display:flex;height:calc(100vh - 122px)}
+  .viewwrap{flex:1;min-width:0;position:relative}
+  #net,#map{width:100%;height:100%}
+  #map{background:#14171d}
+  .hidden{display:none !important}
+
+  .leaflet-container{background:#14171d}
+  .leaflet-control-zoom a{background:var(--panel);color:var(--text);border-color:var(--border)}
+  .leaflet-control-zoom a:hover{background:#1d212a}
+  .leaflet-control-attribution{background:rgba(15,17,21,.7) !important;color:#6b7280 !important}
+  .leaflet-control-attribution a{color:#7fb3d5 !important}
+  .map-tooltip{background:var(--panel) !important;border:1px solid var(--border) !important;color:var(--text) !important;border-radius:6px !important;font-size:12px !important;box-shadow:0 2px 8px rgba(0,0,0,.4) !important}
+
+  #panel{width:0;overflow:hidden;background:var(--panel);border-left:1px solid var(--border);transition:width .18s ease;display:flex;flex-direction:column}
+  #panel.open{width:340px}
+  #panel-inner{padding:20px;overflow-y:auto}
+  #panel-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;z-index:5}
+  #panel-close:hover{color:var(--text)}
+  .panel-wrap{position:relative;height:100%}
+  .ptype{display:inline-block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:5px;margin-bottom:10px;font-weight:600}
+  #panel h2{margin:0 0 4px;font-size:17px;line-height:1.3}
+  .pcat{font-size:12px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .ploc{font-size:11.5px;color:var(--muted);margin-bottom:16px;font-style:italic}
+  .prel-title{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:18px 0 8px;border-top:1px solid var(--border);padding-top:14px}
+  .prel{font-size:13px;margin-bottom:10px;padding:10px;background:var(--panel2);border-radius:8px;border-left:3px solid var(--border)}
+  .prel.Avéré{border-left-color:#5cb85c}
+  .prel.Probable{border-left-color:#e0a458}
+  .prel.Allégué{border-left-color:#888}
+  .prel .rel-line{color:var(--text);margin-bottom:4px}
+  .prel .rel-line b{color:var(--accent)}
+  .prel .rel-meta{font-size:11px;color:var(--muted)}
+  .prel .rel-meta a{color:#7fb3d5;text-decoration:none}
+  .prel .rel-meta a:hover{text-decoration:underline}
+  .cert-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;margin-left:6px}
+  .cert-badge.Avéré{background:#5cb85c33;color:#7ed87e}
+  .cert-badge.Probable{background:#e0a45833;color:#e0a458}
+  .cert-badge.Allégué{background:#88888833;color:#aaa}
+
+  footer{padding:8px 24px;font-size:11px;color:#6b7280;background:var(--panel2);border-top:1px solid var(--border)}
+  .empty-hint{padding:40px 20px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Réseau Kadyrov — Cartographie OSINT</h1>
+  <div class="sub">Sources publiques uniquement · basculez Carte / Réseau · cliquez une entité pour sa fiche · filtres actifs dans les deux vues</div>
+</header>
+
+<div class="toolbar">
+  <div class="modeToggle">
+    <button id="btnMap" class="active">🗺️ Carte</button>
+    <button id="btnNet">🕸️ Réseau</button>
+  </div>
+  <div class="search">
+    <input type="text" id="searchBox" placeholder="Rechercher…">
+  </div>
+  <div class="group" id="catGroup">
+    <span class="label">Catégorie</span>
+  </div>
+  <div class="group" id="certGroup">
+    <span class="label">Certitude</span>
+    <label><input type="checkbox" class="cert-cb" value="Avéré" checked> Avéré</label>
+    <label><input type="checkbox" class="cert-cb" value="Probable" checked> Probable</label>
+    <label><input type="checkbox" class="cert-cb" value="Allégué" checked> Allégué</label>
+  </div>
+  <div class="legend" id="legend"></div>
+</div>
+
+<div class="layout">
+  <div class="viewwrap">
+    <div id="map"></div>
+    <div id="net" class="hidden"></div>
+  </div>
+  <div id="panel">
+    <div class="panel-wrap">
+      <button id="panel-close">✕</button>
+      <div id="panel-inner">
+        <div class="empty-hint">Cliquez une entité pour afficher sa fiche détaillée.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Données : IStories/OCCRP, Ukrainska Pravda, Moscow Times, OC Media, RUSI, Novaya Gazeta, Meduza, CORRECTIV. Outil pédagogique — chaque relation indique sa source et son niveau de certitude. Fond cartographique : Natural Earth (domaine public).</footer>
+
+<script>
+/* ============== DONNÉES ============== */
+const RAW = [
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"cousin de",b:"Shahruddi Edilgiriev",tb:"Personne",cb:"clan",src:"IStories/OCCRP 2025",url:"",cert:"Avéré"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"propriétaire enregistré de",b:"Villa Palm Jumeirah (Zabeel Saray)",tb:"Bien",cb:"business",src:"IStories/Dubai Unlocked 2025",url:"",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"utilisateur de (ambassade officieuse depuis 2014)",b:"Villa Palm Jumeirah (Zabeel Saray)",tb:"Bien",cb:"business",src:"Ukrainska Pravda 2022",url:"",cert:"Probable"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"propriétaire enregistré de",b:"3 villas continentales Dubai (~6 M$)",tb:"Bien",cb:"business",src:"IStories/Dubai Unlocked 2025",url:"",cert:"Avéré"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"propriétaire enregistré de",b:"Airbus A319 (jet privé)",tb:"Bien",cb:"business",src:"OCCRP/IStories",url:"",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"utilisateur présumé de",b:"Airbus A319 (jet privé)",tb:"Bien",cb:"business",src:"Ukrainska Pravda 2022",url:"",cert:"Allégué"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"frère de",b:"Pakhruddi Edilgiriev",tb:"Personne",cb:"securite",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"frère de",b:"Amrudi Edilgiriev",tb:"Personne",cb:"politique",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Pakhruddi Edilgiriev",ta:"Personne",ca:"securite",rel:"membre de la sécurité de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Der Spiegel / IStories",url:"",cert:"Probable"},
+  {a:"Amrudi Edilgiriev",ta:"Personne",ca:"politique",rel:"conseiller de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Zura Edilgirieva",ta:"Personne",ca:"clan",rel:"mère de",b:"Shahruddi Edilgiriev",tb:"Personne",cb:"clan",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Zura Edilgirieva",ta:"Personne",ca:"clan",rel:"sœur de",b:"Akhmat Kadyrov",tb:"Personne",cb:"clan",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Akhmat Kadyrov",ta:"Personne",ca:"clan",rel:"père de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Domaine public",url:"",cert:"Avéré"},
+  {a:"Turko Daudov",ta:"Personne",ca:"international",rel:"cousin de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"IStories / RUSI",url:"",cert:"Avéré"},
+  {a:"Turko Daudov",ta:"Personne",ca:"international",rel:"a séjourné à (représentant zones arabo-musulmanes)",b:"Villa Palm Jumeirah (Zabeel Saray)",tb:"Bien",cb:"business",src:"IStories / RUSI",url:"",cert:"Probable"},
+  {a:"Turko Daudov",ta:"Personne",ca:"international",rel:"lobbying anti-sanctions auprès de",b:"Pays du Golfe",tb:"État",cb:"international",src:"RUSI",url:"",cert:"Allégué"},
+  {a:"Medni Kadyrova",ta:"Personne",ca:"clan",rel:"épouse de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Domaine public",url:"",cert:"Avéré"},
+  {a:"Medni Kadyrova",ta:"Personne",ca:"clan",rel:"cofondatrice de",b:"Firdaws (marque de mode)",tb:"Société",cb:"business",src:"Novaya Gazeta / OC Media",url:"",cert:"Avéré"},
+  {a:"Aishat Kadyrova",ta:"Personne",ca:"clan",rel:"fille de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Domaine public",url:"",cert:"Avéré"},
+  {a:"Aishat Kadyrova",ta:"Personne",ca:"clan",rel:"associée à",b:"Firdaws (marque de mode)",tb:"Société",cb:"business",src:"Novaya Gazeta / OC Media",url:"",cert:"Avéré"},
+  {a:"Firdaws (marque de mode)",ta:"Société",ca:"business",rel:"défilés réguliers depuis 2012 à",b:"Dubai",tb:"État",cb:"international",src:"Novaya Gazeta",url:"",cert:"Avéré"},
+  {a:"Ruslan Baisarov",ta:"Personne",ca:"business",rel:"liens présumés avec",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"IStories / OC Media",url:"",cert:"Allégué"},
+  {a:"Ruslan Baisarov",ta:"Personne",ca:"business",rel:"propriétaire présumé de",b:"Biens immobiliers UAE",tb:"Bien",cb:"business",src:"IStories / OC Media",url:"",cert:"Allégué"},
+  {a:"Khas-Magomed Taimaskhanov",ta:"Personne",ca:"clan",rel:"neveu de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"IStories / OC Media",url:"",cert:"Probable"},
+  {a:"Khas-Magomed Taimaskhanov",ta:"Personne",ca:"clan",rel:"propriétaire présumé de",b:"Biens immobiliers UAE",tb:"Bien",cb:"business",src:"IStories / OC Media",url:"",cert:"Allégué"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"rencontre bilatérale 2023 avec",b:"Président des UAE (MBZ)",tb:"État",cb:"international",src:"OC Media 2025",url:"",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"discussions présumées sur ses avoirs avec",b:"Monarchies du Golfe",tb:"État",cb:"international",src:"IStories 2025",url:"",cert:"Allégué"},
+  {a:"Investissements UAE",ta:"Flux financier",ca:"business",rel:"auraient financé",b:"Akhmat Tower (Grozny)",tb:"Bien",cb:"business",src:"RUSI/LSE",url:"",cert:"Allégué"},
+  {a:"Address Hotels + Resorts",ta:"Société",ca:"business",rel:"gestionnaire de",b:"Akhmat Tower (Grozny)",tb:"Bien",cb:"business",src:"RUSI/LSE",url:"",cert:"Probable"},
+
+  {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"frère de",b:"Souleiman Dadaev",tb:"Personne",cb:"securite",src:"IStories / CORRECTIV, déc. 2025",url:"https://istories.media/en/news/2025/12/11/authorities-evict-murad-dadaev-from-his-villa/",cert:"Avéré"},
+  {a:"Souleiman Dadaev",ta:"Personne",ca:"securite",rel:"condamné pour l'assassinat (2009, Vienne) d'",b:"Umar Israilov",tb:"Personne",cb:"securite",src:"Justice autrichienne / IStories",url:"https://istories.media/en/stories/2025/12/09/the-first-chechen-of-german-nationalism/",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"identifié comme commanditaire présumé de l'assassinat de",b:"Umar Israilov",tb:"Personne",cb:"securite",src:"Parquet de Vienne / IStories",url:"https://istories.media/en/stories/2025/12/09/the-first-chechen-of-german-nationalism/",cert:"Probable"},
+  {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"contacts publics avec (commentaires, entourage)",b:"Khamzat Kadyrov (conseiller)",tb:"Personne",cb:"politique",src:"IStories / CORRECTIV, déc. 2025",url:"https://istories.media/en/stories/2025/12/09/the-first-chechen-of-german-nationalism/",cert:"Avéré"},
+  {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"membre du parti (Basse-Saxe) jusqu'à exclusion engagée",b:"AfD (Allemagne)",tb:"Société",cb:"politique",src:"OC Media, avr. 2026",url:"https://oc-media.org/afd-moves-to-expel-chechen-born-member-noah-krieger/",cert:"Avéré"},
+  {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"villa utilisée comme lieu de réunion, expulsé pour loyers impayés (oct. 2025)",b:"Villa de Hanovre (Allemagne)",tb:"Bien",cb:"international",src:"IStories / CORRECTIV, déc. 2025",url:"https://istories.media/en/news/2025/12/11/authorities-evict-murad-dadaev-from-his-villa/",cert:"Avéré"},
+];
+
+/* ============== COORDONNÉES GÉOGRAPHIQUES ============== */
+const GEO = {
+  "Ramzan Kadyrov":[43.32,45.69,"Grozny, Tchétchénie"],
+  "Akhmat Kadyrov":[43.31,45.68,"Grozny (historique)"],
+  "Medni Kadyrova":[43.33,45.70,"Grozny"],
+  "Aishat Kadyrova":[43.34,45.71,"Grozny"],
+  "Zura Edilgirieva":[43.30,45.66,"Tchétchénie"],
+  "Shahruddi Edilgiriev":[43.28,45.64,"Tchétchénie / UAE"],
+  "Pakhruddi Edilgiriev":[43.29,45.62,"Tchétchénie"],
+  "Amrudi Edilgiriev":[43.27,45.60,"Tchétchénie"],
+  "Khas-Magomed Taimaskhanov":[43.25,45.72,"Tchétchénie"],
+  "Ruslan Baisarov":[43.20,45.80,"Russie / Tchétchénie"],
+  "Turko Daudov":[25.20,55.27,"actif Golfe / Dubaï"],
+  "Khamzat Kadyrov (conseiller)":[43.31,45.73,"Grozny"],
+  "Firdaws (marque de mode)":[43.35,45.65,"Grozny (siège marque)"],
+  "Akhmat Tower (Grozny)":[43.32,45.69,"Grozny"],
+  "Villa Palm Jumeirah (Zabeel Saray)":[25.10,55.12,"Palm Jumeirah, Dubaï"],
+  "3 villas continentales Dubai (~6 M$)":[25.20,55.27,"Dubaï"],
+  "Biens immobiliers UAE":[25.08,55.14,"Émirats arabes unis"],
+  "Airbus A319 (jet privé)":[25.25,55.36,"Immatriculé UAE"],
+  "Address Hotels + Resorts":[25.19,55.28,"Dubaï (groupe hôtelier)"],
+  "Investissements UAE":[24.47,54.37,"Abou Dhabi"],
+  "Dubai":[25.20,55.27,"Dubaï"],
+  "Président des UAE (MBZ)":[24.47,54.37,"Abou Dhabi"],
+  "Monarchies du Golfe":[24.71,50.55,"Golfe (générique)"],
+  "Pays du Golfe":[25.30,51.53,"Golfe (générique)"],
+  "Noah Krieger (Murad Dadaev)":[52.37,9.73,"Hanovre, Allemagne"],
+  "Villa de Hanovre (Allemagne)":[52.38,9.74,"Hanovre"],
+  "AfD (Allemagne)":[52.52,13.40,"Berlin (siège parti)"],
+  "Souleiman Dadaev":[48.21,16.37,"Vienne / Moscou"],
+  "Umar Israilov":[48.21,16.37,"Vienne, Autriche (assassiné)"],
+};
+
+/* ============== CONSTANTES VISUELLES ============== */
+const COLOR = {Personne:"#e0a458",Société:"#7fb3d5","Flux financier":"#7fb3d5",Bien:"#f4d03f",État:"#76d7c4"};
+const SHAPE = {Personne:"dot",Société:"box","Flux financier":"box",Bien:"diamond",État:"hexagon"};
+const DASH  = {Avéré:false,Probable:[6,4],Allégué:[2,4]};
+const CAT_LABEL = {clan:"Clan / famille",securite:"Sécurité",business:"Business / actifs",politique:"Politique",international:"International"};
+const CAT_COLOR = {clan:"#e0a458",securite:"#e74c3c",business:"#7fb3d5",politique:"#9b59b6",international:"#76d7c4"};
+
+/* ============== INDEX ENTITÉS ============== */
+function buildEntityIndex(){
+  const idx = {};
+  RAW.forEach(r=>{
+    if(!idx[r.a]) idx[r.a] = {name:r.a, type:r.ta, cat:r.ca, relations:[]};
+    if(!idx[r.b]) idx[r.b] = {name:r.b, type:r.tb, cat:r.cb, relations:[]};
+    idx[r.a].relations.push({dir:"out", rel:r.rel, other:r.b, src:r.src, url:r.url, cert:r.cert});
+    idx[r.b].relations.push({dir:"in", rel:r.rel, other:r.a, src:r.src, url:r.url, cert:r.cert});
+  });
+  return idx;
+}
+const ENTITIES = buildEntityIndex();
+const ALL_NAMES = Object.keys(ENTITIES);
+
+/* ============== TOOLBAR + LÉGENDE ============== */
+const catGroup = document.getElementById("catGroup");
+Object.keys(CAT_LABEL).forEach(c=>{
+  const lab = document.createElement("label");
+  lab.innerHTML = `<input type="checkbox" class="cat-cb" value="${c}" checked>
+    <span class="dot" style="background:${CAT_COLOR[c]}"></span> ${CAT_LABEL[c]}`;
+  catGroup.appendChild(lab);
+});
+document.getElementById("legend").innerHTML = `
+  <span><span class="dot" style="background:${COLOR.Personne}"></span> Personne</span>
+  <span><span class="dot" style="background:${COLOR.Société}"></span> Société / flux</span>
+  <span><span class="dot" style="background:${COLOR.Bien}"></span> Bien</span>
+  <span><span class="dot" style="background:${COLOR.État}"></span> État / juridiction</span>
+  <span><span class="chip solid"></span> Avéré</span>
+  <span><span class="chip dashed"></span> Probable</span>
+  <span><span class="chip dotted"></span> Allégué</span>
+`;
+
+/* ============== ÉTAT GLOBAL ============== */
+let mode = "map";
+let highlightName = null;
+function activeCerts(){const o={};document.querySelectorAll(".cert-cb").forEach(cb=>{o[cb.value]=cb.checked;});return o;}
+function activeCats(){const o={};document.querySelectorAll(".cat-cb").forEach(cb=>{o[cb.value]=cb.checked;});return o;}
+function visibleRelations(){const certs=activeCerts(),cats=activeCats();return RAW.filter(r=>certs[r.cert]&&cats[r.ca]&&cats[r.cb]);}
+function isNeighbor(center,name){if(!center)return false;return RAW.some(r=>(r.a===center&&r.b===name)||(r.b===center&&r.a===name));}
+
+/* ============== VUE RÉSEAU ============== */
+let network;
+function buildNet(){
+  const rels=visibleRelations();const nodesMap={};const edges=[];
+  rels.forEach(r=>{
+    [[r.a,r.ta],[r.b,r.tb]].forEach(([n,t])=>{
+      if(!nodesMap[n]){
+        const central=n==="Ramzan Kadyrov";
+        const dimmed=highlightName&&n!==highlightName&&!isNeighbor(highlightName,n);
+        nodesMap[n]={id:n,label:n,shape:SHAPE[t]||"dot",
+          color:{background:dimmed?"#33363f":(COLOR[t]||"#ccc"),border:central?"#e74c3c":(dimmed?"#444":"#555")},
+          borderWidth:central?4:1,size:central?28:16,
+          font:{color:dimmed?"#555":"#e8e8e8",size:central?16:13}};
+      }
+    });
+    const dimmedEdge=highlightName&&r.a!==highlightName&&r.b!==highlightName;
+    edges.push({from:r.a,to:r.b,label:r.rel,arrows:"to",dashes:DASH[r.cert],
+      color:{color:dimmedEdge?"#2a2d35":"#7f8a99",highlight:"#e0a458"},
+      font:{color:dimmedEdge?"#3a3d45":"#9aa3b2",size:10,strokeWidth:0,background:"#0f1115"},
+      title:`${r.rel} — source : ${r.src} (${r.cert})`});
+  });
+  return {nodes:Object.values(nodesMap),edges};
+}
+function renderNet(){
+  const data=buildNet();
+  if(!network){
+    network=new vis.Network(document.getElementById("net"),data,{
+      physics:{stabilization:true,barnesHut:{gravitationalConstant:-8000,springLength:160}},
+      interaction:{hover:true,tooltipDelay:120},nodes:{shadow:false},edges:{smooth:{type:"continuous"}}});
+    network.on("click",p=>{if(p.nodes&&p.nodes.length)openPanel(p.nodes[0]);});
+  }else{network.setData(data);}
+}
+
+/* ============== VUE CARTE ============== */
+let map,geoLayer,markerLayer,edgeLayer;
+const markerByName={};
+function initMap(){
+  map=L.map("map",{zoomControl:true,attributionControl:true,minZoom:2,maxZoom:9}).setView([38,35],4);
+  fetch("region.geojson").then(r=>r.json()).then(gj=>{
+    geoLayer=L.geoJSON(gj,{style:{fillColor:"#2d3441",fillOpacity:1,color:"#4a5365",weight:1}}).addTo(map);
+    fitToData();
+  }).catch(()=>{document.getElementById("map").style.background="#2b313c";fitToData();});
+  edgeLayer=L.layerGroup().addTo(map);
+  markerLayer=L.layerGroup().addTo(map);
+  renderMap();
+}
+// Cadre la vue : par défaut sur l'axe Caucase-Golfe (cœur du dossier),
+// l'utilisateur peut dézoomer pour voir le volet européen (Hanovre/Vienne)
+function fitToData(){
+  map.fitBounds([[24.0,44.0],[44.0,57.0]], {padding:[40,40], maxZoom:6});
+}
+function jitter(name,lat,lon){
+  let h=0;for(let i=0;i<name.length;i++){h=(h*31+name.charCodeAt(i))&0xffff;}
+  const dLat=((h%100)-50)/100*0.22;const dLon=(((h>>4)%100)-50)/100*0.22;
+  return [lat+dLat,lon+dLon];
+}
+function renderMap(){
+  if(!map)return;
+  edgeLayer.clearLayers();markerLayer.clearLayers();
+  for(const k in markerByName)delete markerByName[k];
+  const rels=visibleRelations();const usedNames=new Set();
+  rels.forEach(r=>{usedNames.add(r.a);usedNames.add(r.b);});
+  rels.forEach(r=>{
+    const ga=GEO[r.a],gb=GEO[r.b];if(!ga||!gb)return;
+    const pa=jitter(r.a,ga[0],ga[1]);const pb=jitter(r.b,gb[0],gb[1]);
+    const dimmedEdge=highlightName&&r.a!==highlightName&&r.b!==highlightName;
+    const dashArray=r.cert==="Avéré"?null:(r.cert==="Probable"?"8,6":"3,6");
+    const line=L.polyline([pa,pb],{color:dimmedEdge?"#2a2d35":"#7f8a99",weight:dimmedEdge?1:1.6,opacity:dimmedEdge?0.3:0.75,dashArray,fill:false});
+    line.bindTooltip(`${r.a} → ${r.rel} → ${r.b}<br><span style="color:#9aa3b2">${r.src} (${r.cert})</span>`,{className:"map-tooltip",sticky:true});
+    edgeLayer.addLayer(line);
+  });
+  usedNames.forEach(name=>{
+    const g=GEO[name];if(!g)return;
+    const e=ENTITIES[name];const central=name==="Ramzan Kadyrov";
+    const dimmed=highlightName&&name!==highlightName&&!isNeighbor(highlightName,name);
+    const baseColor=COLOR[e.type]||"#ccc";const color=dimmed?"#33363f":baseColor;
+    const radius=central?11:7;const pos=jitter(name,g[0],g[1]);
+    const marker=L.circleMarker(pos,{radius,fillColor:color,color:central?"#e74c3c":(dimmed?"#444":"#1a1e26"),weight:central?3:1.5,fillOpacity:dimmed?0.4:0.95});
+    marker.bindTooltip(name,{className:"map-tooltip",direction:"top",offset:[0,-radius]});
+    marker.on("click",()=>openPanel(name));
+    markerLayer.addLayer(marker);markerByName[name]=marker;
+  });
+}
+
+/* ============== PANEL DÉTAIL ============== */
+const panel=document.getElementById("panel");
+const panelInner=document.getElementById("panel-inner");
+document.getElementById("panel-close").addEventListener("click",()=>panel.classList.remove("open"));
+function openPanel(name){
+  const e=ENTITIES[name];if(!e)return;
+  panel.classList.add("open");
+  const typeColor=COLOR[e.type]||"#ccc";const catLabel=CAT_LABEL[e.cat]||e.cat;const catColor=CAT_COLOR[e.cat]||"#888";
+  const g=GEO[name];const locLine=g?`<div class="ploc">📍 ${g[2]}</div>`:"";
+  let html=`<span class="ptype" style="background:${typeColor}22;color:${typeColor}">${e.type}</span>
+    <h2>${name}</h2>
+    <div class="pcat"><span class="dot" style="background:${catColor}"></span> ${catLabel}</div>${locLine}`;
+  html+=`<div class="prel-title">Relations (${e.relations.length})</div>`;
+  e.relations.forEach(rl=>{
+    const arrowName=rl.dir==="out"?`<b>${name}</b> ${rl.rel} <b>${rl.other}</b>`:`<b>${rl.other}</b> ${rl.rel} <b>${name}</b>`;
+    const srcLink=rl.url?`<a href="${rl.url}" target="_blank" rel="noopener">${rl.src}</a>`:rl.src;
+    html+=`<div class="prel ${rl.cert}"><div class="rel-line">${arrowName}</div>
+      <div class="rel-meta">Source : ${srcLink} <span class="cert-badge ${rl.cert}">${rl.cert}</span></div></div>`;
+  });
+  panelInner.innerHTML=html;
+}
+
+/* ============== RECHERCHE ============== */
+const searchBox=document.getElementById("searchBox");
+let searchTimeout;
+searchBox.addEventListener("input",()=>{
+  clearTimeout(searchTimeout);
+  searchTimeout=setTimeout(()=>{
+    const q=searchBox.value.trim().toLowerCase();
+    if(q.length===0){highlightName=null;refresh();return;}
+    const match=ALL_NAMES.find(n=>n.toLowerCase().includes(q));
+    if(match){
+      highlightName=match;refresh();
+      if(mode==="net"&&network){network.selectNodes([match]);network.focus(match,{scale:1.1,animation:{duration:400}});}
+      else if(mode==="map"&&map&&GEO[match]){const g=GEO[match];map.flyTo(jitter(match,g[0],g[1]),6,{duration:0.6});}
+      openPanel(match);
+    }
+  },200);
+});
+
+/* ============== BASCULE DE MODE ============== */
+const btnMap=document.getElementById("btnMap");
+const btnNet=document.getElementById("btnNet");
+const mapEl=document.getElementById("map");
+const netEl=document.getElementById("net");
+function setMode(m){
+  mode=m;
+  if(m==="map"){
+    btnMap.classList.add("active");btnNet.classList.remove("active");
+    mapEl.classList.remove("hidden");netEl.classList.add("hidden");
+    if(!map)initMap();else{map.invalidateSize();renderMap();}
+  }else{
+    btnNet.classList.add("active");btnMap.classList.remove("active");
+    netEl.classList.remove("hidden");mapEl.classList.add("hidden");
+    renderNet();
+  }
+}
+btnMap.addEventListener("click",()=>setMode("map"));
+btnNet.addEventListener("click",()=>setMode("net"));
+
+/* ============== REFRESH ============== */
+function refresh(){if(mode==="map")renderMap();else renderNet();}
+document.querySelectorAll(".cert-cb, .cat-cb").forEach(cb=>cb.addEventListener("change",refresh));
+
+/* ============== INIT ============== */
+setMode("map");
+</script>
+</body>
+</html>
