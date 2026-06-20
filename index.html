@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Réseau Kadyrov — Cartographie OSINT</title>
+<script src="vis-network.min.js"></script>
+<style>
+  :root{
+    --bg:#0f1115; --panel:#161a21; --panel2:#12151b; --border:#2a2f3a;
+    --text:#e8e8e8; --muted:#9aa3b2; --accent:#e0a458; --red:#e74c3c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text)}
+  header{padding:16px 24px;background:var(--panel);border-bottom:1px solid var(--border)}
+  h1{margin:0;font-size:19px;font-weight:600}
+  .sub{color:var(--muted);font-size:13px;margin-top:4px}
+
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;padding:12px 24px;background:var(--panel2);border-bottom:1px solid var(--border);align-items:center}
+  .search{position:relative;flex:0 0 auto}
+  .search input{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:8px 12px 8px 32px;border-radius:8px;font-size:13px;width:220px}
+  .search input:focus{outline:1px solid var(--accent)}
+  .search::before{content:"🔍";position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.6}
+
+  .group{display:flex;gap:4px;align-items:center;padding:4px 10px;background:var(--bg);border:1px solid var(--border);border-radius:8px}
+  .group span.label{font-size:11px;color:var(--muted);margin-right:6px;text-transform:uppercase;letter-spacing:.04em}
+  .group label{font-size:12.5px;color:#c5cbd6;display:flex;align-items:center;gap:5px;cursor:pointer;padding:2px 6px;border-radius:5px}
+  .group label:hover{background:#1d212a}
+
+  .legend{display:flex;gap:16px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);margin-left:auto;align-items:center}
+  .legend span{display:inline-flex;align-items:center;gap:5px}
+  .chip{width:20px;height:0;border-top:2px solid #999}
+  .chip.solid{border-top-style:solid}
+  .chip.dashed{border-top-style:dashed}
+  .chip.dotted{border-top-style:dotted}
+  .dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+
+  .layout{display:flex;height:calc(100vh - 122px)}
+  #net{flex:1;min-width:0}
+
+  #panel{width:0;overflow:hidden;background:var(--panel);border-left:1px solid var(--border);transition:width .18s ease;display:flex;flex-direction:column}
+  #panel.open{width:340px}
+  #panel-inner{padding:20px;overflow-y:auto}
+  #panel-close{position:absolute;top:14px;right:14px;background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1}
+  #panel-close:hover{color:var(--text)}
+  .panel-wrap{position:relative;height:100%}
+  .ptype{display:inline-block;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:5px;margin-bottom:10px;font-weight:600}
+  #panel h2{margin:0 0 4px;font-size:17px;line-height:1.3}
+  .pcat{font-size:12px;color:var(--muted);margin-bottom:16px}
+  .prel-title{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:18px 0 8px;border-top:1px solid var(--border);padding-top:14px}
+  .prel{font-size:13px;margin-bottom:10px;padding:10px;background:var(--panel2);border-radius:8px;border-left:3px solid var(--border)}
+  .prel.Avéré{border-left-color:#5cb85c}
+  .prel.Probable{border-left-color:#e0a458}
+  .prel.Allégué{border-left-color:#888}
+  .prel .rel-line{color:var(--text);margin-bottom:4px}
+  .prel .rel-line b{color:var(--accent)}
+  .prel .rel-meta{font-size:11px;color:var(--muted)}
+  .prel .rel-meta a{color:#7fb3d5;text-decoration:none}
+  .prel .rel-meta a:hover{text-decoration:underline}
+  .cert-badge{display:inline-block;font-size:10px;padding:1px 6px;border-radius:4px;margin-left:6px}
+  .cert-badge.Avéré{background:#5cb85c33;color:#7ed87e}
+  .cert-badge.Probable{background:#e0a45833;color:#e0a458}
+  .cert-badge.Allégué{background:#88888833;color:#aaa}
+
+  footer{padding:8px 24px;font-size:11px;color:#6b7280;background:var(--panel2);border-top:1px solid var(--border)}
+  .empty-hint{padding:40px 20px;text-align:center;color:var(--muted);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Réseau Kadyrov — Cartographie OSINT</h1>
+  <div class="sub">Sources publiques uniquement · cliquez un nœud pour la fiche détaillée · glissez pour déplacer · molette pour zoomer</div>
+</header>
+
+<div class="toolbar">
+  <div class="search">
+    <input type="text" id="searchBox" placeholder="Rechercher un nom…">
+  </div>
+
+  <div class="group" id="catGroup">
+    <span class="label">Catégorie</span>
+    <!-- injecté en JS -->
+  </div>
+
+  <div class="group" id="certGroup">
+    <span class="label">Certitude</span>
+    <label><input type="checkbox" class="cert-cb" value="Avéré" checked> Avéré</label>
+    <label><input type="checkbox" class="cert-cb" value="Probable" checked> Probable</label>
+    <label><input type="checkbox" class="cert-cb" value="Allégué" checked> Allégué</label>
+  </div>
+
+  <div class="legend" id="legend"></div>
+</div>
+
+<div class="layout">
+  <div id="net"></div>
+  <div id="panel">
+    <div class="panel-wrap">
+      <button id="panel-close">✕</button>
+      <div id="panel-inner">
+        <div class="empty-hint">Cliquez un nœud du graphe pour afficher sa fiche.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Données : IStories/OCCRP, Ukrainska Pravda, Moscow Times, OC Media, RUSI, Novaya Gazeta, Meduza, CORRECTIV. Outil pédagogique — chaque relation indique sa source et son niveau de certitude.</footer>
+
+<script>
+/* ============== DONNÉES ============== */
+// type_A/type_B = nature de l'entité (Personne / Société / Bien / État)
+// cat_A/cat_B   = catégorie métier (clan, securite, business, politique, international)
+const RAW = [
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"cousin de",b:"Shahruddi Edilgiriev",tb:"Personne",cb:"clan",src:"IStories/OCCRP 2025",url:"",cert:"Avéré"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"propriétaire enregistré de",b:"Villa Palm Jumeirah (Zabeel Saray)",tb:"Bien",cb:"business",src:"IStories/Dubai Unlocked 2025",url:"",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"utilisateur de (ambassade officieuse depuis 2014)",b:"Villa Palm Jumeirah (Zabeel Saray)",tb:"Bien",cb:"business",src:"Ukrainska Pravda 2022",url:"",cert:"Probable"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"propriétaire enregistré de",b:"3 villas continentales Dubai (~6 M$)",tb:"Bien",cb:"business",src:"IStories/Dubai Unlocked 2025",url:"",cert:"Avéré"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"propriétaire enregistré de",b:"Airbus A319 (jet privé)",tb:"Bien",cb:"business",src:"OCCRP/IStories",url:"",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"utilisateur présumé de",b:"Airbus A319 (jet privé)",tb:"Bien",cb:"business",src:"Ukrainska Pravda 2022",url:"",cert:"Allégué"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"frère de",b:"Pakhruddi Edilgiriev",tb:"Personne",cb:"securite",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Shahruddi Edilgiriev",ta:"Personne",ca:"clan",rel:"frère de",b:"Amrudi Edilgiriev",tb:"Personne",cb:"politique",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Pakhruddi Edilgiriev",ta:"Personne",ca:"securite",rel:"membre de la sécurité de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Der Spiegel / IStories",url:"",cert:"Probable"},
+  {a:"Amrudi Edilgiriev",ta:"Personne",ca:"politique",rel:"conseiller de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Zura Edilgirieva",ta:"Personne",ca:"clan",rel:"mère de",b:"Shahruddi Edilgiriev",tb:"Personne",cb:"clan",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Zura Edilgirieva",ta:"Personne",ca:"clan",rel:"sœur de",b:"Akhmat Kadyrov",tb:"Personne",cb:"clan",src:"IStories 2025",url:"",cert:"Avéré"},
+  {a:"Akhmat Kadyrov",ta:"Personne",ca:"clan",rel:"père de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Domaine public",url:"",cert:"Avéré"},
+  {a:"Turko Daudov",ta:"Personne",ca:"international",rel:"cousin de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"IStories / RUSI",url:"",cert:"Avéré"},
+  {a:"Turko Daudov",ta:"Personne",ca:"international",rel:"a séjourné à (représentant zones arabo-musulmanes)",b:"Villa Palm Jumeirah (Zabeel Saray)",tb:"Bien",cb:"business",src:"IStories / RUSI",url:"",cert:"Probable"},
+  {a:"Turko Daudov",ta:"Personne",ca:"international",rel:"lobbying anti-sanctions auprès de",b:"Pays du Golfe",tb:"État",cb:"international",src:"RUSI",url:"",cert:"Allégué"},
+  {a:"Medni Kadyrova",ta:"Personne",ca:"clan",rel:"épouse de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Domaine public",url:"",cert:"Avéré"},
+  {a:"Medni Kadyrova",ta:"Personne",ca:"clan",rel:"cofondatrice de",b:"Firdaws (marque de mode)",tb:"Société",cb:"business",src:"Novaya Gazeta / OC Media",url:"",cert:"Avéré"},
+  {a:"Aishat Kadyrova",ta:"Personne",ca:"clan",rel:"fille de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Domaine public",url:"",cert:"Avéré"},
+  {a:"Aishat Kadyrova",ta:"Personne",ca:"clan",rel:"associée à",b:"Firdaws (marque de mode)",tb:"Société",cb:"business",src:"Novaya Gazeta / OC Media",url:"",cert:"Avéré"},
+  {a:"Firdaws (marque de mode)",ta:"Société",ca:"business",rel:"défilés réguliers depuis 2012 à",b:"Dubai",tb:"État",cb:"international",src:"Novaya Gazeta",url:"",cert:"Avéré"},
+  {a:"Ruslan Baisarov",ta:"Personne",ca:"business",rel:"liens présumés avec",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"IStories / OC Media",url:"",cert:"Allégué"},
+  {a:"Ruslan Baisarov",ta:"Personne",ca:"business",rel:"propriétaire présumé de",b:"Biens immobiliers UAE",tb:"Bien",cb:"business",src:"IStories / OC Media",url:"",cert:"Allégué"},
+  {a:"Khas-Magomed Taimaskhanov",ta:"Personne",ca:"clan",rel:"neveu de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"IStories / OC Media",url:"",cert:"Probable"},
+  {a:"Khas-Magomed Taimaskhanov",ta:"Personne",ca:"clan",rel:"propriétaire présumé de",b:"Biens immobiliers UAE",tb:"Bien",cb:"business",src:"IStories / OC Media",url:"",cert:"Allégué"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"rencontre bilatérale 2023 avec",b:"Président des UAE (MBZ)",tb:"État",cb:"international",src:"OC Media 2025",url:"",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"discussions présumées sur ses avoirs avec",b:"Monarchies du Golfe",tb:"État",cb:"international",src:"IStories 2025",url:"",cert:"Allégué"},
+  {a:"Investissements UAE",ta:"Flux financier",ca:"business",rel:"auraient financé",b:"Akhmat Tower (Grozny)",tb:"Bien",cb:"business",src:"RUSI/LSE",url:"",cert:"Allégué"},
+  {a:"Address Hotels + Resorts",ta:"Société",ca:"business",rel:"gestionnaire de",b:"Akhmat Tower (Grozny)",tb:"Bien",cb:"business",src:"RUSI/LSE",url:"",cert:"Probable"},
+
+  // --- Ajout : volet européen / élimination d'opposants (Hanovre) ---
+  {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"frère de",b:"Souleiman Dadaev",tb:"Personne",cb:"securite",src:"IStories / CORRECTIV, déc. 2025",url:"https://istories.media/en/news/2025/12/11/authorities-evict-murad-dadaev-from-his-villa/",cert:"Avéré"},
+  {a:"Souleiman Dadaev",ta:"Personne",ca:"securite",rel:"condamné pour l'assassinat (2009, Vienne) d'",b:"Umar Israilov",tb:"Personne",cb:"securite",src:"Justice autrichienne / IStories",url:"https://istories.media/en/stories/2025/12/09/the-first-chechen-of-german-nationalism/",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"identifié comme commanditaire présumé de l'assassinat de",b:"Umar Israilov",tb:"Personne",cb:"securite",src:"Parquet de Vienne / IStories",url:"https://istories.media/en/stories/2025/12/09/the-first-chechen-of-german-nationalism/",cert:"Probable"},
+  {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"contacts publics avec (commentaires, entourage)",b:"Khamzat Kadyrov (conseiller)",tb:"Personne",cb:"politique",src:"IStories / CORRECTIV, déc. 2025",url:"https://istories.media/en/stories/2025/12/09/the-first-chechen-of-german-nationalism/",cert:"Avéré"},
+  {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"membre du parti (Basse-Saxe) jusqu'à exclusion engagée",b:"AfD (Allemagne)",tb:"Société",cb:"politique",src:"OC Media, avr. 2026",url:"https://oc-media.org/afd-moves-to-expel-chechen-born-member-noah-krieger/",cert:"Avéré"},
+  {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"villa utilisée comme lieu de réunion, expulsé pour loyers impayés (oct. 2025)",b:"Villa de Hanovre (Allemagne)",tb:"Bien",cb:"international",src:"IStories / CORRECTIV, déc. 2025",url:"https://istories.media/en/news/2025/12/11/authorities-evict-murad-dadaev-from-his-villa/",cert:"Avéré"},
+];
+
+/* ============== CONSTANTES VISUELLES ============== */
+const COLOR = {Personne:"#e0a458",Société:"#7fb3d5","Flux financier":"#7fb3d5",Bien:"#f4d03f",État:"#76d7c4"};
+const SHAPE = {Personne:"dot",Société:"box","Flux financier":"box",Bien:"diamond",État:"hexagon"};
+const DASH  = {Avéré:false,Probable:[6,4],Allégué:[2,4]};
+
+const CAT_LABEL = {
+  clan:"Clan / famille",
+  securite:"Sécurité",
+  business:"Business / actifs",
+  politique:"Politique",
+  international:"International"
+};
+const CAT_COLOR = {
+  clan:"#e0a458", securite:"#e74c3c", business:"#7fb3d5", politique:"#9b59b6", international:"#76d7c4"
+};
+
+/* ============== INDEX ENTITÉS ============== */
+// Construit un index nom -> {type, cat, relations:[...]}
+function buildEntityIndex(){
+  const idx = {};
+  RAW.forEach(r=>{
+    if(!idx[r.a]) idx[r.a] = {name:r.a, type:r.ta, cat:r.ca, relations:[]};
+    if(!idx[r.b]) idx[r.b] = {name:r.b, type:r.tb, cat:r.cb, relations:[]};
+    idx[r.a].relations.push({dir:"out", rel:r.rel, other:r.b, src:r.src, url:r.url, cert:r.cert});
+    idx[r.b].relations.push({dir:"in", rel:r.rel, other:r.a, src:r.src, url:r.url, cert:r.cert});
+  });
+  return idx;
+}
+const ENTITIES = buildEntityIndex();
+const ALL_NAMES = Object.keys(ENTITIES);
+
+/* ============== TOOLBAR : catégories ============== */
+const catGroup = document.getElementById("catGroup");
+Object.keys(CAT_LABEL).forEach(c=>{
+  const lab = document.createElement("label");
+  lab.innerHTML = `<input type="checkbox" class="cat-cb" value="${c}" checked>
+    <span class="dot" style="background:${CAT_COLOR[c]}"></span> ${CAT_LABEL[c]}`;
+  catGroup.appendChild(lab);
+});
+
+/* ============== LÉGENDE (type d'entité + certitude) ============== */
+document.getElementById("legend").innerHTML = `
+  <span><span class="dot" style="background:${COLOR.Personne}"></span> Personne</span>
+  <span><span class="dot" style="background:${COLOR.Société}"></span> Société / flux</span>
+  <span><span class="dot" style="background:${COLOR.Bien}"></span> Bien</span>
+  <span><span class="dot" style="background:${COLOR.État}"></span> État / juridiction</span>
+  <span><span class="chip solid"></span> Avéré</span>
+  <span><span class="chip dashed"></span> Probable</span>
+  <span><span class="chip dotted"></span> Allégué</span>
+`;
+
+/* ============== CONSTRUCTION DU GRAPHE ============== */
+let network;
+let highlightName = null; // nom mis en avant par la recherche
+
+function activeCerts(){
+  const out = {};
+  document.querySelectorAll(".cert-cb").forEach(cb=>{ out[cb.value] = cb.checked; });
+  return out;
+}
+function activeCats(){
+  const out = {};
+  document.querySelectorAll(".cat-cb").forEach(cb=>{ out[cb.value] = cb.checked; });
+  return out;
+}
+
+function build(){
+  const certs = activeCerts();
+  const cats  = activeCats();
+  const nodesMap = {};
+  const edges = [];
+
+  RAW.forEach(r=>{
+    if(!certs[r.cert]) return;
+    if(!cats[r.ca] || !cats[r.cb]) return; // les deux extrémités doivent être dans une catégorie active
+
+    [[r.a,r.ta,r.ca],[r.b,r.tb,r.cb]].forEach(([n,t,c])=>{
+      if(!nodesMap[n]){
+        const central = n === "Ramzan Kadyrov";
+        const dimmed = highlightName && n !== highlightName && !isNeighbor(highlightName, n);
+        nodesMap[n] = {
+          id:n, label:n, shape:SHAPE[t]||"dot",
+          color:{
+            background: dimmed ? "#33363f" : (COLOR[t]||"#ccc"),
+            border: central ? "#e74c3c" : (dimmed ? "#444" : "#555")
+          },
+          borderWidth: central?4:1,
+          size: central?28:16,
+          font:{color: dimmed ? "#555" : "#e8e8e8", size: central?16:13}
+        };
+      }
+    });
+
+    const dimmedEdge = highlightName && r.a !== highlightName && r.b !== highlightName;
+    edges.push({
+      from:r.a, to:r.b, label:r.rel, arrows:"to",
+      dashes:DASH[r.cert],
+      color:{color: dimmedEdge ? "#2a2d35" : "#7f8a99", highlight:"#e0a458"},
+      font:{color: dimmedEdge ? "#3a3d45" : "#9aa3b2", size:10, strokeWidth:0, background:"#0f1115"},
+      title:`${r.rel} — source : ${r.src} (${r.cert})`
+    });
+  });
+
+  return {nodes:Object.values(nodesMap), edges};
+}
+
+function isNeighbor(center, name){
+  if(!center) return false;
+  return RAW.some(r => (r.a===center && r.b===name) || (r.b===center && r.a===name));
+}
+
+function render(){
+  const data = build();
+  if(data.nodes.length === 0){
+    document.getElementById("net").innerHTML = '<div class="empty-hint">Aucune entité ne correspond aux filtres actuels.</div>';
+    network = null;
+    return;
+  }
+  if(!document.getElementById("net").querySelector("canvas") || !network){
+    document.getElementById("net").innerHTML = "";
+    network = new vis.Network(document.getElementById("net"), data, {
+      physics:{stabilization:true, barnesHut:{gravitationalConstant:-8000, springLength:160}},
+      interaction:{hover:true, tooltipDelay:120},
+      nodes:{shadow:false},
+      edges:{smooth:{type:"continuous"}}
+    });
+    network.on("click", onNetworkClick);
+  } else {
+    network.setData(data);
+  }
+}
+
+function onNetworkClick(params){
+  if(params.nodes && params.nodes.length > 0){
+    openPanel(params.nodes[0]);
+  }
+}
+
+/* ============== PANEL DÉTAIL ============== */
+const panel = document.getElementById("panel");
+const panelInner = document.getElementById("panel-inner");
+document.getElementById("panel-close").addEventListener("click", closePanel);
+
+function closePanel(){
+  panel.classList.remove("open");
+}
+
+function openPanel(name){
+  const e = ENTITIES[name];
+  if(!e) return;
+  panel.classList.add("open");
+
+  const typeColor = COLOR[e.type] || "#ccc";
+  const catLabel = CAT_LABEL[e.cat] || e.cat;
+  const catColor = CAT_COLOR[e.cat] || "#888";
+
+  let html = `
+    <span class="ptype" style="background:${typeColor}22;color:${typeColor}">${e.type}</span>
+    <h2>${name}</h2>
+    <div class="pcat"><span class="dot" style="background:${catColor}"></span> ${catLabel}</div>
+  `;
+
+  html += `<div class="prel-title">Relations (${e.relations.length})</div>`;
+  e.relations.forEach(rl=>{
+    const verb = rl.dir === "out" ? rl.rel : `← ${rl.rel}`;
+    const arrowName = rl.dir === "out"
+      ? `<b>${name}</b> ${rl.rel} <b>${rl.other}</b>`
+      : `<b>${rl.other}</b> ${rl.rel} <b>${name}</b>`;
+    const srcLink = rl.url
+      ? `<a href="${rl.url}" target="_blank" rel="noopener">${rl.src}</a>`
+      : rl.src;
+    html += `
+      <div class="prel ${rl.cert}">
+        <div class="rel-line">${arrowName}</div>
+        <div class="rel-meta">Source : ${srcLink} <span class="cert-badge ${rl.cert}">${rl.cert}</span></div>
+      </div>
+    `;
+  });
+
+  panelInner.innerHTML = html;
+}
+
+/* ============== RECHERCHE ============== */
+const searchBox = document.getElementById("searchBox");
+let searchTimeout;
+searchBox.addEventListener("input", ()=>{
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(()=>{
+    const q = searchBox.value.trim().toLowerCase();
+    if(q.length === 0){
+      highlightName = null;
+      render();
+      return;
+    }
+    const match = ALL_NAMES.find(n => n.toLowerCase().includes(q));
+    if(match){
+      highlightName = match;
+      render();
+      if(network){
+        network.selectNodes([match]);
+        network.focus(match, {scale:1.1, animation:{duration:400}});
+      }
+      openPanel(match);
+    }
+  }, 200);
+});
+
+/* ============== ÉVÉNEMENTS FILTRES ============== */
+document.querySelectorAll(".cert-cb, .cat-cb").forEach(cb=>{
+  cb.addEventListener("change", render);
+});
+
+/* ============== INIT ============== */
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+id,entite_A,type_A,relation,entite_B,type_B,juridiction,source,certitude
+1,Ramzan Kadyrov,Personne,cousin de,Shahruddi Edilgiriev,Personne,Russie/Tchétchénie,IStories/OCCRP 2025,Avéré
+2,Shahruddi Edilgiriev,Personne,propriétaire enregistré de,Villa Palm Jumeirah (Zabeel Saray),Bien immobilier,UAE,IStories/Dubai Unlocked 2025,Avéré
+3,Ramzan Kadyrov,Personne,utilisateur de (ambassade officieuse depuis 2014),Villa Palm Jumeirah (Zabeel Saray),Bien immobilier,UAE,Ukrainska Pravda 2022,Probable
+4,Shahruddi Edilgiriev,Personne,propriétaire enregistré de,3 villas continentales Dubai (~6 M$),Bien immobilier,UAE,IStories/Dubai Unlocked 2025,Avéré
+5,Shahruddi Edilgiriev,Personne,propriétaire enregistré de,Airbus A319 (jet privé),Bien mobilier,UAE/intl,OCCRP/IStories,Avéré
+6,Ramzan Kadyrov,Personne,utilisateur présumé de,Airbus A319 (jet privé),Bien mobilier,UAE/intl,Ukrainska Pravda 2022,Allégué
+7,Shahruddi Edilgiriev,Personne,frère de,Pakhruddi Edilgiriev,Personne,Russie/Tchétchénie,IStories 2025,Avéré
+8,Shahruddi Edilgiriev,Personne,frère de,Amrudi Edilgiriev,Personne,Russie/Tchétchénie,IStories 2025,Avéré
+9,Pakhruddi Edilgiriev,Personne,membre de la sécurité de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,Der Spiegel / IStories,Probable
+10,Amrudi Edilgiriev,Personne,conseiller de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,IStories 2025,Avéré
+11,Zura Edilgirieva,Personne,mère de,Shahruddi Edilgiriev,Personne,Russie/Tchétchénie,IStories 2025,Avéré
+12,Zura Edilgirieva,Personne,soeur de,Akhmat Kadyrov,Personne,Russie/Tchétchénie,IStories 2025,Avéré
+13,Akhmat Kadyrov,Personne,père de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,Domaine public,Avéré
+14,Turko Daudov,Personne,cousin de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,IStories / RUSI,Avéré
+15,Turko Daudov,Personne,a séjourné à (représentant zones arabo-musulmanes),Villa Palm Jumeirah (Zabeel Saray),Bien immobilier,UAE,IStories / RUSI,Probable
+16,Turko Daudov,Personne,lobbying anti-sanctions auprès de,Pays du Golfe,Entité étatique,Moyen-Orient,RUSI,Allégué
+17,Medni Kadyrova,Personne,épouse de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,Domaine public,Avéré
+18,Medni Kadyrova,Personne,cofondatrice de,Firdaws (marque de mode),Société,UAE/Tchétchénie,Novaya Gazeta / OC Media,Avéré
+19,Aishat Kadyrova,Personne,fille de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,Domaine public,Avéré
+20,Aishat Kadyrova,Personne,associée à,Firdaws (marque de mode),Société,UAE/Tchétchénie,Novaya Gazeta / OC Media,Avéré
+21,Firdaws (marque de mode),Société,défilés réguliers depuis 2012 à,Dubai,Juridiction,UAE,Novaya Gazeta,Avéré
+22,Ruslan Baisarov,Personne,liens présumés avec,Ramzan Kadyrov,Personne,Russie,IStories / OC Media,Allégué
+23,Ruslan Baisarov,Personne,propriétaire présumé de,Biens immobiliers UAE,Bien immobilier,UAE,IStories / OC Media,Allégué
+24,Khas-Magomed Taimaskhanov,Personne,neveu de,Ramzan Kadyrov,Personne,Russie/Tchétchénie,IStories / OC Media,Probable
+25,Khas-Magomed Taimaskhanov,Personne,propriétaire présumé de,Biens immobiliers UAE,Bien immobilier,UAE,IStories / OC Media,Allégué
+26,Ramzan Kadyrov,Personne,rencontre bilatérale 2023 avec,Président des UAE (MBZ),Personne/État,UAE,OC Media 2025,Avéré
+27,Ramzan Kadyrov,Personne,discussions présumées sur ses avoirs avec,Monarchies du Golfe,Entité étatique,Moyen-Orient,IStories 2025,Allégué
+28,Investissements UAE,Flux financier,auraient financé,Akhmat Tower (Grozny),Bien immobilier,Russie,RUSI/LSE,Allégué
+29,Address Hotels + Resorts,Société,gestionnaire de,Akhmat Tower (Grozny),Bien immobilier,Russie/UAE,RUSI/LSE,Probable
+30,Noah Krieger (Murad Dadaev),Personne,frère de,Souleiman Dadaev,Personne,Allemagne/Russie,IStories/CORRECTIV 2025,Avéré
+31,Souleiman Dadaev,Personne,"condamné pour l'assassinat (2009, Vienne) d'",Umar Israilov,Personne,Autriche,Justice autrichienne/IStories,Avéré
+32,Ramzan Kadyrov,Personne,identifié comme commanditaire présumé de l'assassinat de,Umar Israilov,Personne,Autriche/Russie,Parquet de Vienne/IStories,Probable
+33,Noah Krieger (Murad Dadaev),Personne,"contacts publics avec (commentaires, entourage)",Khamzat Kadyrov (conseiller),Personne,Allemagne/Russie,IStories/CORRECTIV 2025,Avéré
+34,Noah Krieger (Murad Dadaev),Personne,membre du parti (Basse-Saxe) jusqu'à exclusion engagée,AfD (Allemagne),Société,Allemagne,OC Media 2026,Avéré
+35,Noah Krieger (Murad Dadaev),Personne,"villa utilisée comme lieu de réunion, expulsé pour loyers impayés (oct. 2025)",Villa de Hanovre (Allemagne),Bien immobilier,Allemagne,IStories/CORRECTIV 2025,Avéré
