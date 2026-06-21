@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Réseau Kadyrov — Cartographie OSINT</title>
 <link rel="stylesheet" href="leaflet.css">
+<link rel="stylesheet" href="MarkerCluster.css">
+<link rel="stylesheet" href="MarkerCluster.Default.css">
 <script src="leaflet.js"></script>
+<script src="leaflet.markercluster.js"></script>
 <script src="vis-network.min.js"></script>
 <style>
   :root{
@@ -55,6 +58,16 @@
   .leaflet-control-attribution{background:rgba(15,17,21,.7) !important;color:#6b7280 !important}
   .leaflet-control-attribution a{color:#7fb3d5 !important}
   .map-tooltip{background:var(--panel) !important;border:1px solid var(--border) !important;color:var(--text) !important;border-radius:6px !important;font-size:12px !important;box-shadow:0 2px 8px rgba(0,0,0,.4) !important}
+
+  /* Marqueurs d'entité (divIcon) */
+  .ent-wrap{background:none;border:none}
+  .ent-dot{border-radius:50%;box-sizing:border-box;box-shadow:0 1px 4px rgba(0,0,0,.5)}
+  /* Bulles de cluster */
+  .cl-wrap{background:none;border:none}
+  .cl-bubble{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:rgba(224,164,88,.92);color:#1a1205;font-weight:700;font-size:14px;
+    border:2px solid #0f1115;box-shadow:0 2px 6px rgba(0,0,0,.5)}
+  .leaflet-marker-icon .cl-bubble:hover{background:#e0a458}
 
   #panel{width:0;overflow:hidden;background:var(--panel);border-left:1px solid var(--border);transition:width .18s ease;display:flex;flex-direction:column}
   #panel.open{width:340px}
@@ -167,6 +180,20 @@ const RAW = [
   {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"contacts publics avec (commentaires, entourage)",b:"Khamzat Kadyrov (conseiller)",tb:"Personne",cb:"politique",src:"IStories / CORRECTIV, déc. 2025",url:"https://istories.media/en/stories/2025/12/09/the-first-chechen-of-german-nationalism/",cert:"Avéré"},
   {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"membre du parti (Basse-Saxe) jusqu'à exclusion engagée",b:"AfD (Allemagne)",tb:"Société",cb:"politique",src:"OC Media, avr. 2026",url:"https://oc-media.org/afd-moves-to-expel-chechen-born-member-noah-krieger/",cert:"Avéré"},
   {a:"Noah Krieger (Murad Dadaev)",ta:"Personne",ca:"international",rel:"villa utilisée comme lieu de réunion, expulsé pour loyers impayés (oct. 2025)",b:"Villa de Hanovre (Allemagne)",tb:"Bien",cb:"international",src:"IStories / CORRECTIV, déc. 2025",url:"https://istories.media/en/news/2025/12/11/authorities-evict-murad-dadaev-from-his-villa/",cert:"Avéré"},
+
+  // --- Volet répression transnationale / élimination d'opposants ---
+  {a:"Adam Delimkhanov",ta:"Personne",ca:"securite",rel:"bras droit et cousin de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"OFAC 2014 / domaine public",url:"https://www.opensanctions.org/entities/Q351025/",cert:"Avéré"},
+  {a:"Adam Delimkhanov",ta:"Personne",ca:"securite",rel:"accusé par la police de Dubaï d'avoir orchestré l'assassinat de",b:"Sulim Yamadayev",tb:"Personne",cb:"repression",src:"NBC / Police de Dubaï 2009",url:"https://www.nbcnews.com/id/wbna30072898",cert:"Probable"},
+  {a:"Sulim Yamadayev",ta:"Personne",ca:"repression",rel:"dernier rival majeur éliminé de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"NBC 2009",url:"https://www.nbcnews.com/id/wbna30072898",cert:"Probable"},
+  {a:"Imran Aliev",ta:"Personne",ca:"repression",rel:"blogueur critique (135 coups de couteau) de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"RFE/RL 2020",url:"https://www.rferl.org/a/russian-asylum-seeker-austria-murder/30706727.html",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"commanditaire présumé de l'assassinat (Lille, 2020) de",b:"Imran Aliev",tb:"Personne",cb:"repression",src:"RFE/RL 2020",url:"https://www.rferl.org/a/russian-asylum-seeker-austria-murder/30706727.html",cert:"Probable"},
+  {a:"Mamikhan Umarov",ta:"Personne",ca:"repression",rel:"« ennemi personnel n°1 », critique de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"RFE/RL 2020",url:"https://www.globalsecurity.org/wmd/library/news/russia/2020/russia-200707-rferl01.htm",cert:"Avéré"},
+  {a:"Ramzan Kadyrov",ta:"Personne",ca:"clan",rel:"commanditaire présumé de l'assassinat (Vienne, 2020) de",b:"Mamikhan Umarov",tb:"Personne",cb:"repression",src:"RFE/RL 2020",url:"https://www.globalsecurity.org/wmd/library/news/russia/2020/russia-200707-rferl01.htm",cert:"Probable"},
+  {a:"Tumso Abdurakhmanov",ta:"Personne",ca:"repression",rel:"blogueur en exil, cible d'une tentative de meurtre liée à",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"RFE/RL 2020 (tueur a avoué ordre de Grozny, prime 50 000 €)",url:"https://www.rferl.org/a/chechen-blogger-abdurakhmanov-swedish-court-lengthy-prison-terms-attackers/31042429.html",cert:"Avéré"},
+  {a:"Magomed Daudov",ta:"Personne",ca:"politique",rel:"a déclaré une vendetta publique contre",b:"Tumso Abdurakhmanov",tb:"Personne",cb:"repression",src:"RFE/RL 2019",url:"https://www.globalsecurity.org/wmd/library/news/russia/2020/russia-200705-rferl01.htm",cert:"Avéré"},
+  {a:"Magomed Daudov",ta:"Personne",ca:"politique",rel:"Premier ministre tchétchène, proche de",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Domaine public / IStories",url:"",cert:"Avéré"},
+  {a:"Complot déjoué (Turquie, 2021)",ta:"Personne",ca:"repression",rel:"6 hommes arrêtés (achat d'armes) visant des opposants à",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"RFE/RL 2021",url:"https://www.globalsecurity.org/wmd/library/news/russia/2021/russia-211021-rferl03.htm",cert:"Avéré"},
+  {a:"Zelimkhan Khangoshvili",ta:"Personne",ca:"repression",rel:"opposant tchétchène assassiné (Berlin, 2019) — exécution attribuée au FSB, lien Kadyrov indirect",b:"Ramzan Kadyrov",tb:"Personne",cb:"clan",src:"Tribunal de Berlin 2021 (commanditaire : État russe / FSB)",url:"https://www.aljazeera.com/news/2021/12/15/german-court-convicts-russian-of-2019-state-contracted-killing",cert:"Allégué"},
 ];
 
 /* ============== COORDONNÉES GÉOGRAPHIQUES ============== */
@@ -200,14 +227,22 @@ const GEO = {
   "AfD (Allemagne)":[52.52,13.40,"Berlin (siège parti)"],
   "Souleiman Dadaev":[48.21,16.37,"Vienne / Moscou"],
   "Umar Israilov":[48.21,16.37,"Vienne, Autriche (assassiné)"],
+  "Adam Delimkhanov":[43.30,45.70,"Grozny (sanctionné OFAC/UE/Interpol)"],
+  "Sulim Yamadayev":[25.19,55.28,"Dubaï (assassiné, 2009)"],
+  "Imran Aliev":[50.63,3.07,"Lille, France (assassiné, 2020)"],
+  "Mamikhan Umarov":[48.30,16.47,"Gerasdorf, près de Vienne (assassiné, 2020)"],
+  "Tumso Abdurakhmanov":[60.67,17.14,"Suède (tentative de meurtre, 2020)"],
+  "Magomed Daudov":[43.31,45.70,"Grozny (PM tchétchène)"],
+  "Complot déjoué (Turquie, 2021)":[41.01,28.98,"Istanbul / Antalya (complot déjoué, 2021)"],
+  "Zelimkhan Khangoshvili":[52.52,13.36,"Berlin (assassiné, 2019)"],
 };
 
 /* ============== CONSTANTES VISUELLES ============== */
 const COLOR = {Personne:"#e0a458",Société:"#7fb3d5","Flux financier":"#7fb3d5",Bien:"#f4d03f",État:"#76d7c4"};
 const SHAPE = {Personne:"dot",Société:"box","Flux financier":"box",Bien:"diamond",État:"hexagon"};
 const DASH  = {Avéré:false,Probable:[6,4],Allégué:[2,4]};
-const CAT_LABEL = {clan:"Clan / famille",securite:"Sécurité",business:"Business / actifs",politique:"Politique",international:"International"};
-const CAT_COLOR = {clan:"#e0a458",securite:"#e74c3c",business:"#7fb3d5",politique:"#9b59b6",international:"#76d7c4"};
+const CAT_LABEL = {clan:"Clan / famille",securite:"Sécurité",business:"Business / actifs",politique:"Politique",international:"International",repression:"Répression / opposants"};
+const CAT_COLOR = {clan:"#e0a458",securite:"#e74c3c",business:"#7fb3d5",politique:"#9b59b6",international:"#76d7c4",repression:"#c0392b"};
 
 /* ============== INDEX ENTITÉS ============== */
 function buildEntityIndex(){
@@ -292,18 +327,47 @@ function initMap(){
     fitToData();
   }).catch(()=>{document.getElementById("map").style.background="#2b313c";fitToData();});
   edgeLayer=L.layerGroup().addTo(map);
-  markerLayer=L.layerGroup().addTo(map);
+  // Groupe avec clustering : regroupe les nœuds proches (Grozny, Dubaï...) en un compteur
+  markerLayer=L.markerClusterGroup({
+    maxClusterRadius:38,
+    spiderfyOnMaxZoom:true,
+    showCoverageOnHover:false,
+    zoomToBoundsOnClick:true,
+    iconCreateFunction:function(cluster){
+      const n=cluster.getChildCount();
+      return L.divIcon({
+        html:`<div class="cl-bubble">${n}</div>`,
+        className:"cl-wrap",
+        iconSize:[34,34]
+      });
+    }
+  }).addTo(map);
   renderMap();
 }
-// Cadre la vue : par défaut sur l'axe Caucase-Golfe (cœur du dossier),
-// l'utilisateur peut dézoomer pour voir le volet européen (Hanovre/Vienne)
+// Cadre la vue serré sur l'axe Europe de l'Ouest -> Caucase -> Golfe,
+// qui contient l'essentiel des entités (Lille, Berlin, Vienne, Grozny, Dubaï)
 function fitToData(){
-  map.fitBounds([[24.0,44.0],[44.0,57.0]], {padding:[40,40], maxZoom:6});
+  map.fitBounds([[24.0,2.0],[55.0,57.0]], {padding:[30,30]});
 }
 function jitter(name,lat,lon){
   let h=0;for(let i=0;i<name.length;i++){h=(h*31+name.charCodeAt(i))&0xffff;}
-  const dLat=((h%100)-50)/100*0.22;const dLon=(((h>>4)%100)-50)/100*0.22;
+  const dLat=((h%100)-50)/100*0.6;const dLon=(((h>>4)%100)-50)/100*0.6;
   return [lat+dLat,lon+dLon];
+}
+// Génère un arc courbe entre deux points (quadratic bezier échantillonnée)
+function curvePoints(pa,pb,bend){
+  const mid=[(pa[0]+pb[0])/2,(pa[1]+pb[1])/2];
+  // vecteur perpendiculaire pour décaler le point de contrôle
+  const dx=pb[0]-pa[0], dy=pb[1]-pa[1];
+  const ctrl=[mid[0]+dy*bend, mid[1]-dx*bend];
+  const pts=[];const N=18;
+  for(let i=0;i<=N;i++){
+    const t=i/N;const u=1-t;
+    const lat=u*u*pa[0]+2*u*t*ctrl[0]+t*t*pb[0];
+    const lon=u*u*pa[1]+2*u*t*ctrl[1]+t*t*pb[1];
+    pts.push([lat,lon]);
+  }
+  return pts;
 }
 function renderMap(){
   if(!map)return;
@@ -311,12 +375,15 @@ function renderMap(){
   for(const k in markerByName)delete markerByName[k];
   const rels=visibleRelations();const usedNames=new Set();
   rels.forEach(r=>{usedNames.add(r.a);usedNames.add(r.b);});
-  rels.forEach(r=>{
+  rels.forEach((r,idx)=>{
     const ga=GEO[r.a],gb=GEO[r.b];if(!ga||!gb)return;
     const pa=jitter(r.a,ga[0],ga[1]);const pb=jitter(r.b,gb[0],gb[1]);
     const dimmedEdge=highlightName&&r.a!==highlightName&&r.b!==highlightName;
     const dashArray=r.cert==="Avéré"?null:(r.cert==="Probable"?"8,6":"3,6");
-    const line=L.polyline([pa,pb],{color:dimmedEdge?"#2a2d35":"#7f8a99",weight:dimmedEdge?1:1.6,opacity:dimmedEdge?0.3:0.75,dashArray,fill:false});
+    // courbure déterministe : alterne le sens et l'amplitude selon l'index
+    const bend=0.12*(((idx%2)===0)?1:-1);
+    const pts=curvePoints(pa,pb,bend);
+    const line=L.polyline(pts,{color:dimmedEdge?"#2a2d35":"#7f8a99",weight:dimmedEdge?1:1.6,opacity:dimmedEdge?0.3:0.7,dashArray,fill:false,smoothFactor:1});
     line.bindTooltip(`${r.a} → ${r.rel} → ${r.b}<br><span style="color:#9aa3b2">${r.src} (${r.cert})</span>`,{className:"map-tooltip",sticky:true});
     edgeLayer.addLayer(line);
   });
@@ -325,9 +392,17 @@ function renderMap(){
     const e=ENTITIES[name];const central=name==="Ramzan Kadyrov";
     const dimmed=highlightName&&name!==highlightName&&!isNeighbor(highlightName,name);
     const baseColor=COLOR[e.type]||"#ccc";const color=dimmed?"#33363f":baseColor;
-    const radius=central?11:7;const pos=jitter(name,g[0],g[1]);
-    const marker=L.circleMarker(pos,{radius,fillColor:color,color:central?"#e74c3c":(dimmed?"#444":"#1a1e26"),weight:central?3:1.5,fillOpacity:dimmed?0.4:0.95});
-    marker.bindTooltip(name,{className:"map-tooltip",direction:"top",offset:[0,-radius]});
+    const size=central?28:18;const pos=jitter(name,g[0],g[1]);
+    const border=central?"#e74c3c":(dimmed?"#444":"#0f1115");
+    const bw=central?3.5:2;
+    const icon=L.divIcon({
+      className:"ent-wrap",
+      html:`<div class="ent-dot" style="width:${size}px;height:${size}px;background:${color};border:${bw}px solid ${border};opacity:${dimmed?0.45:1}"></div>`,
+      iconSize:[size,size],
+      iconAnchor:[size/2,size/2]
+    });
+    const marker=L.marker(pos,{icon});
+    marker.bindTooltip(name,{className:"map-tooltip",direction:"top",offset:[0,-size/2]});
     marker.on("click",()=>openPanel(name));
     markerLayer.addLayer(marker);markerByName[name]=marker;
   });
